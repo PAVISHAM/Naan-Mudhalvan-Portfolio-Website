@@ -1,18 +1,26 @@
-<!-- index.html - Home Page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | My Portfolio</title>
+    <title>Home | Pavisha M Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
+<!-- Animated background particles -->
+<div class="bg-particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+</div>
+
 <nav>
-    <h2 class="logo">Portfolio of PAVISHA <span>✦</span></h2>
+    <h2 class="logo">Portfolio of <span>PAVISHA M</span> ✦</h2>
     <ul>
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -28,36 +36,49 @@
     <div class="hero-content">
         <div class="hero-badge">✦ WELCOME TO MY WORLD ✦</div>
         <h1>Hello, I'm <span class="gradient-text">Pavisha M</span></h1>
-        <p>Frontend Developer | Software Developer | Problem Solver</p>
-
+        <p class="hero-subtitle">Frontend Developer &nbsp;|&nbsp; CSE Student &nbsp;|&nbsp; Problem Solver</p>
         <div class="hero-buttons">
-            <button onclick="goToContact()" class="btn-primary">
-                Hire Me <i class="fas fa-arrow-right"></i>
-            </button>
-            <button onclick="goToProjects()" class="btn-outline">
-                View Work <i class="fas fa-code"></i>
-            </button>
+            <button onclick="window.location.href='contact.html'" class="btn-primary">Hire Me <i class="fas fa-arrow-right"></i></button>
+            <button onclick="window.location.href='projects.html'" class="btn-outline">View Work <i class="fas fa-code"></i></button>
         </div>
-
         <div class="hero-stats">
-            <div class="stat"><span class="stat-num">Fresher</span><span>Status</span></div>
-            <div class="stat"><span class="stat-num">3+</span><span>Projects</span></div>
-            <div class="stat"><span class="stat-num">CSE</span><span>Student</span></div>
+            <div class="stat">
+                <span class="stat-num" data-target="1">0</span>
+                <span class="stat-label">Years Exp</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num" data-target="3">0</span>
+                <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num" data-target="5">0</span>
+                <span class="stat-label">Certifications</span>
+            </div>
         </div>
     </div>
 
     <div class="hero-visual">
-        <div class="floating-card card-1"><i class="fab fa-react"></i> React</div>
-        <div class="floating-card card-2"><i class="fab fa-python"></i> Python</div>
-        <div class="floating-card card-3"><i class="fab fa-figma"></i> Figma</div>
-        <div class="profile-circle"></div>
+        <div class="profile-circle">
+            <div class="profile-inner">
+                <i class="fas fa-user" style="font-size:5rem; color: #ffd89b; opacity:0.6;"></i>
+            </div>
+            <div class="orbit-ring"></div>
+        </div>
+        <div class="floating-card card-1"><i class="fab fa-react" style="color:#61dafb"></i> React</div>
+        <div class="floating-card card-2"><i class="fab fa-python" style="color:#ffd43b"></i> Python</div>
+        <div class="floating-card card-3"><i class="fas fa-figma" style="color:#f24e1e"></i> Figma</div>
     </div>
 </section>
 
+<!-- Scroll indicator -->
+<div class="scroll-indicator">
+    <div class="scroll-dot"></div>
+</div>
+
 <footer>
-    <p>© 2025 Pavisha M | Software Developer</p>
+    <p>© 2025 Pavisha M | Crafting digital experiences</p>
     <div class="footer-social">
-        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="https://github.com/PAVISHAM" target="_blank"><i class="fab fa-github"></i></a>
         <a href="#"><i class="fab fa-linkedin-in"></i></a>
         <a href="#"><i class="fab fa-twitter"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>

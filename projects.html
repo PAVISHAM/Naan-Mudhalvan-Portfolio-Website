@@ -1,40 +1,101 @@
-<div class="card">
-    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
-    <h3>Interactive Dashboard</h3>
-    <p>Data visualization dashboard with interactive charts and insights</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Pavisha M Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
 
-    <div class="card-tags">
-        <span>Dashboard</span>
-        <span>Data Analysis</span>
-    </div>
-
-    <a href="https://github.com/PAVISHAM/INTERACTIVE-FORM-VALIDATION" target="_blank" class="card-link">View Project →</a>
+<div class="bg-particles">
+    <div class="particle"></div><div class="particle"></div>
+    <div class="particle"></div><div class="particle"></div>
+    <div class="particle"></div>
 </div>
 
+<nav>
+    <h2 class="logo">Portfolio of <span>PAVISHA M</span> ✦</h2>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+</nav>
 
-<div class="card">
-    <div class="card-icon"><i class="fas fa-cloud"></i></div>
-    <h3>Interactive Dashboard using Google Cloud</h3>
-    <p>Cloud-based dashboard simulation using Google Cloud tools</p>
+<section class="content">
+    <div class="hero-badge">✦ What I've Built ✦</div>
+    <h1>My <span class="gradient-text">Projects</span></h1>
+    <p class="section-subtitle">A showcase of my work and creations</p>
 
-    <div class="card-tags">
-        <span>Google Cloud</span>
-        <span>Simulation</span>
+    <div class="projects-grid">
+
+        <div class="card" onclick="showProjectModal('Interactive Dashboard', 'A data visualization dashboard with interactive charts and insights. Built using HTML, CSS, and JavaScript with real-time chart updates and user-friendly interface.')">
+            <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Interactive Dashboard</h3>
+            <p>Data visualization dashboard with interactive charts and insights for analyzing data patterns.</p>
+            <div class="card-tags">
+                <span>HTML/CSS</span>
+                <span>JavaScript</span>
+                <span>Data Analysis</span>
+            </div>
+            <a href="https://github.com/PAVISHAM/INTERACTIVE-FORM-VALIDATION" target="_blank" class="card-link" onclick="event.stopPropagation()">View on GitHub →</a>
+        </div>
+
+        <div class="card" onclick="showProjectModal('Cloud Storage Dashboard', 'Cloud-based dashboard simulation built using Google Cloud tools. Features cloud storage management, data analytics, and real-time monitoring capabilities.')">
+            <div class="card-icon"><i class="fas fa-cloud"></i></div>
+            <h3>Cloud Storage Dashboard</h3>
+            <p>Cloud-based dashboard simulation using Google Cloud tools with storage management features.</p>
+            <div class="card-tags">
+                <span>Google Cloud</span>
+                <span>Dashboard</span>
+                <span>Simulation</span>
+            </div>
+            <a href="https://github.com/PAVISHAM/cloud-storage-project" target="_blank" class="card-link" onclick="event.stopPropagation()">View on GitHub →</a>
+        </div>
+
+        <div class="card" onclick="showProjectModal('IBM Cognos Analytics', 'Business reporting and analytics project using IBM Cognos. Includes data modeling, report generation, and business intelligence dashboards for decision making.')">
+            <div class="card-icon"><i class="fas fa-database"></i></div>
+            <h3>IBM Cognos Analytics</h3>
+            <p>Business reporting and analytics using IBM Cognos with data modeling and BI dashboards.</p>
+            <div class="card-tags">
+                <span>IBM Cognos</span>
+                <span>Analytics</span>
+                <span>Reporting</span>
+            </div>
+            <a href="https://github.com/PAVISHAM/IBM-Cognos-Analytics-Project-" target="_blank" class="card-link" onclick="event.stopPropagation()">View on GitHub →</a>
+        </div>
+
     </div>
+</section>
 
-    <a href="https://github.com/PAVISHAM/cloud-storage-project" target="_blank" class="card-link">View Project →</a>
+<!-- Project Modal -->
+<div class="modal" id="projectModal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-icon"><i class="fas fa-rocket"></i></div>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDesc"></p>
+        <button class="btn-primary" onclick="closeModal()">Close</button>
+    </div>
 </div>
 
-
-<div class="card">
-    <div class="card-icon"><i class="fas fa-database"></i></div>
-    <h3>IBM Cognos Analytics Project</h3>
-    <p>Business reporting and analytics using IBM Cognos</p>
-
-    <div class="card-tags">
-        <span>Cognos</span>
-        <span>Reporting</span>
+<footer>
+    <p>© 2025 Pavisha M | Creative Developer</p>
+    <div class="footer-social">
+        <a href="https://github.com/PAVISHAM" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
     </div>
+</footer>
 
-    <a href="https://github.com/PAVISHAM/IBM-Cognos-Analytics-Project-"target="_blank" class="card-link">View Project →</a>
-</div>
+<script src="script.js"></script>
+</body>
+</html>

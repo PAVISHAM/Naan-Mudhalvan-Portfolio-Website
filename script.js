@@ -1,75 +1,113 @@
-/* script.js - Complete JavaScript for All Pages */
+/* script.js - Fixed & Enhanced JavaScript for Pavisha M Portfolio */
 
 // ============ NAVIGATION FUNCTIONS ============
-function goToContact() {
-    window.location.href = "contact.html";
-}
-
-function goToProjects() {
-    window.location.href = "projects.html";
-}
+function goToContact() { window.location.href = "contact.html"; }
+function goToProjects() { window.location.href = "projects.html"; }
 
 // ============ MOBILE MENU TOGGLE ============
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Add page fade-in
+    document.body.classList.add('page-fade');
+
     // Mobile menu toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navUl = document.querySelector('nav ul');
-    
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
+
+    if (menuToggle && navUl) {
+        menuToggle.addEventListener('click', function () {
             navUl.classList.toggle('show');
         });
+        // Close menu when a link is clicked
+        navUl.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navUl.classList.remove('show'));
+        });
     }
-    
-    // Add animation on scroll
-    const cards = document.querySelectorAll('.card, .skill-category, .resume-card, .info-card');
-    
+
+    // ===== ACTIVE NAV LINK =====
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('nav ul li a').forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        }
+    });
+
+    // ===== SCROLL REVEAL ANIMATION =====
+    const revealElements = document.querySelectorAll('.card, .skill-category, .resume-card, .info-card, .about-container, .achievement-item');
+
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry, i) => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, i * 80);
+                observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.1 });
-    
-    cards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(card);
+
+    revealElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(25px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
     });
+
+    // ===== SKILL BAR ANIMATION =====
+    const progressBars = document.querySelectorAll('.progress[data-width]');
+    if (progressBars.length > 0) {
+        const barObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    setTimeout(() => {
+                        bar.style.width = bar.getAttribute('data-width');
+                    }, 200);
+                    barObserver.unobserve(bar);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        progressBars.forEach(bar => barObserver.observe(bar));
+    }
+
+    // ===== COUNTER ANIMATION (Hero Stats) =====
+    const counters = document.querySelectorAll('.stat-num[data-target]');
+    if (counters.length > 0) {
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute('data-target'));
+                    let current = 0;
+                    const step = Math.ceil(target / 30);
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        el.textContent = current;
+                    }, 50);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+    }
 });
 
-// ============ PROJECT MODAL FUNCTIONS ============
+// ============ PROJECT MODAL ============
 function showProjectModal(title, description) {
-    // Create modal if it doesn't exist
-    let modal = document.getElementById('projectModal');
-    
-    if (!modal) {
-        // Create modal dynamically
-        modal = document.createElement('div');
-        modal.id = 'projectModal';
-        modal.className = 'modal';
-        modal.innerHTML = `
-            <div class="modal-content">
-                <span class="modal-close" onclick="closeModal()">&times;</span>
-                <i class="fas fa-rocket modal-icon"></i>
-                <h2 id="modalTitle">Project Title</h2>
-                <p id="modalDesc">Project description goes here...</p>
-                <button class="btn-primary" onclick="closeModal()">Close</button>
-            </div>
-        `;
-        document.body.appendChild(modal);
+    const modal = document.getElementById('projectModal');
+    if (modal) {
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalDesc').textContent = description;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
     }
-    
-    // Update modal content
-    document.getElementById('modalTitle').textContent = title;
-    document.getElementById('modalDesc').textContent = description;
-    
-    // Show modal
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
@@ -80,155 +118,117 @@ function closeModal() {
     }
 }
 
-// Close modal when clicking outside
-window.onclick = function(event) {
+window.addEventListener('click', function (e) {
     const modal = document.getElementById('projectModal');
-    if (event.target === modal) {
-        closeModal();
-    }
-}
+    if (e.target === modal) closeModal();
+});
 
-// ============ RESUME DOWNLOAD FUNCTION ============
+window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+});
+
+// ============ RESUME DOWNLOAD ============
 function downloadResume() {
-    // Create a simple resume content
     const resumeContent = `
-        ALEX MORGAN - RESUME
-        ====================
-        
-        CONTACT
-        -------
-        Email: alex.morgan@portfolio.com
-        Phone: +1 (555) 123-4567
-        Location: San Francisco, CA
-        
-        PROFESSIONAL SUMMARY
-        --------------------
-        Creative Web Developer with 5+ years of experience in building responsive,
-        user-friendly websites and applications. Expert in modern frontend technologies
-        and passionate about UI/UX design.
-        
-        WORK EXPERIENCE
-        ---------------
-        Senior Web Developer | 2022 - Present
-        • Leading front-end development for multiple client projects
-        • Mentoring junior developers
-        • Implementing modern UI/UX solutions
-        
-        Frontend Developer | 2019 - 2022
-        • Built responsive web applications
-        • Collaborated with design teams
-        • Optimized website performance
-        
-        EDUCATION
-        ---------
-        B.Sc. Computer Science | University of Technology | 2013 - 2017
-        Graduated with Honors, GPA: 3.8/4.0
-        
-        SKILLS
-        ------
-        • HTML5, CSS3, JavaScript
-        • React, Node.js
-        • Python, SQL
-        • Figma, Adobe XD
-        • Git, VS Code, Docker
-        
-        CERTIFICATIONS
-        --------------
-        • Meta Frontend Developer Professional Certificate
-        • Google UX Design Certificate
-    `;
-    
-    // Create blob and download
+PAVISHA M — RESUME
+====================
+
+CONTACT
+-------
+Email   : pavisha2906@gmail.com
+Location: Nagercoil, Tamil Nadu, India
+GitHub  : github.com/PAVISHAM
+
+EDUCATION
+---------
+BE Computer Science — 2023 to 2027
+University College of Engineering, Nagercoil
+CGPA: 8.24
+
+Pragati – Path to Future (Cohort 8) — 2026
+Learning program: Communication & Aptitude Skills
+
+WORK EXPERIENCE
+---------------
+Web Developer (Part-Time) — 2024 to Present
+Frontend development for client projects, building responsive websites.
+
+Freelance Projects — 2023 to 2024
+Responsive web apps, team collaboration, performance optimization.
+
+SKILLS
+------
+• HTML & CSS (85%)
+• JavaScript (70%)
+• React (60%)
+• Python (70%)
+• SQL (65%)
+• Typewriting – English Senior (90%)
+
+TOOLS
+-----
+VS Code, GitHub, Figma, ChatGPT, Claude AI, Gemini AI, Jenkins
+
+CERTIFICATIONS
+--------------
+• Infosys Springboard Certificates (Python & more)
+• Google UX Design Certificate
+• IBM Cognos Analytics Certificate
+
+PROJECTS
+--------
+1. Interactive Dashboard — github.com/PAVISHAM/INTERACTIVE-FORM-VALIDATION
+2. Cloud Storage Dashboard — github.com/PAVISHAM/cloud-storage-project
+3. IBM Cognos Analytics — github.com/PAVISHAM/IBM-Cognos-Analytics-Project-
+`;
+
     const blob = new Blob([resumeContent], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'Alex_Morgan_Resume.txt';
+    a.download = 'Pavisha_M_Resume.txt';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    
-    // Show success message
-    alert('Resume download started!');
 }
 
-// ============ CONTACT FORM SUBMISSION ============
+// ============ CONTACT FORM ============
 function sendMessage(event) {
     if (event) event.preventDefault();
-    
-    const name = document.getElementById('name')?.value || '';
-    const email = document.getElementById('email')?.value || '';
-    const message = document.getElementById('message')?.value || '';
+
+    const name = document.getElementById('name')?.value.trim() || '';
+    const email = document.getElementById('email')?.value.trim() || '';
+    const message = document.getElementById('message')?.value.trim() || '';
     const formStatus = document.getElementById('formStatus');
-    
+
     if (!name || !email || !message) {
         if (formStatus) {
-            formStatus.textContent = 'Please fill in all fields';
+            formStatus.textContent = '⚠️ Please fill in all required fields.';
             formStatus.style.color = '#ff6b6b';
         }
         return false;
     }
-    
-    // Simulate sending message
+
     if (formStatus) {
-        formStatus.textContent = 'Sending message...';
+        formStatus.textContent = '⏳ Sending message...';
         formStatus.style.color = '#ffd89b';
     }
-    
+
     setTimeout(() => {
         if (formStatus) {
-            formStatus.textContent = 'Message sent successfully! I will get back to you soon.';
+            formStatus.textContent = '✅ Message sent! I will get back to you soon.';
             formStatus.style.color = '#4ecdc4';
         }
         document.getElementById('contactForm')?.reset();
-    }, 1000);
-    
+    }, 1200);
+
     return false;
 }
 
-// ============ ADDITIONAL INTERACTIVE EFFECTS ============
-
-// Add hover effect to cards
-document.addEventListener('DOMContentLoaded', function() {
-    const allCards = document.querySelectorAll('.card');
-    allCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px)';
-        });
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
-    
-    // Add typing animation to hero text (optional)
-    const heroTitle = document.querySelector('.hero h1');
-    if (heroTitle && heroTitle.textContent.includes('Hello')) {
-        const originalText = heroTitle.innerHTML;
-        heroTitle.innerHTML = '<span class="gradient-text">Hello, I\'m Alex Morgan</span>';
-    }
-});
-
-// ============ PAGE LOAD ANIMATIONS ============
-window.addEventListener('load', function() {
-    // Fade in content
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
-    document.body.style.opacity = '1';
-    
-    // Add active class to current page in nav
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('nav ul li a');
-    navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// ============ SMOOTH SCROLLING ============
+// ============ SMOOTH SCROLL ============
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
         if (href !== '#' && href !== '') {
             const target = document.querySelector(href);

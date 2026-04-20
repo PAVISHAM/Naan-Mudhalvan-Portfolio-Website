@@ -1,18 +1,23 @@
-<!-- resume.html - Resume Page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume | My Portfolio</title>
+    <title>Resume | Pavisha M Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
+<div class="bg-particles">
+    <div class="particle"></div><div class="particle"></div>
+    <div class="particle"></div><div class="particle"></div>
+    <div class="particle"></div>
+</div>
+
 <nav>
-    <h2 class="logo">MyPortfolio <span>✦</span></h2>
+    <h2 class="logo">Portfolio of <span>PAVISHA M</span> ✦</h2>
     <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -25,60 +30,97 @@
 </nav>
 
 <section class="content resume-section">
+    <div class="hero-badge">✦ My Journey ✦</div>
     <h1>My <span class="gradient-text">Resume</span></h1>
-    <p class="section-subtitle">Professional experience & education</p>
-    
+    <p class="section-subtitle">Experience, education & achievements</p>
+
     <div class="resume-container">
+
+        <!-- Work Experience -->
         <div class="resume-card">
             <h3><i class="fas fa-briefcase"></i> Work Experience</h3>
             <div class="resume-item">
-                <h4>Senior Web Developer <span>2022 - Present</span></h4>
-                <p>Leading front-end development for multiple client projects, mentoring junior developers, and implementing modern UI/UX solutions.</p>
+                <h4>Web Developer (Part-Time) <span>2024 – Present</span></h4>
+                <p>Working on frontend development projects for clients, building responsive websites and maintaining web applications.</p>
             </div>
             <div class="resume-item">
-                <h4>Frontend Developer <span>2019 - 2022</span></h4>
-                <p>Built responsive web applications, collaborated with design teams, and optimized website performance for better user experience.</p>
-            </div>
-            <div class="resume-item">
-                <h4>Junior Developer <span>2017 - 2019</span></h4>
-                <p>Assisted in developing client websites, fixed bugs, and maintained existing codebases.</p>
+                <h4>Freelance Projects <span>2023 – 2024</span></h4>
+                <p>Built responsive web applications, collaborated with teams, and optimized websites for better user experience.</p>
             </div>
         </div>
-        
+
+        <!-- Education -->
         <div class="resume-card">
             <h3><i class="fas fa-graduation-cap"></i> Education</h3>
             <div class="resume-item">
-                <h4>B.Sc. Computer Science <span>2013 - 2017</span></h4>
-                <p>University of Technology - Graduated with Honors, GPA: 3.8/4.0</p>
+                <h4>BE Computer Science <span>2023 – 2027</span></h4>
+                <p>University College of Engineering, Nagercoil &nbsp;|&nbsp; CGPA: 8.24</p>
             </div>
             <div class="resume-item">
-                <h4>Web Development Bootcamp <span>2016</span></h4>
-                <p>Intensive full-stack web development program covering MERN stack.</p>
+                <h4>Pragati – Path to Future (Cohort 8) <span>2026</span></h4>
+                <p>Learning program focused on communication skills, aptitude skills, and professional development.</p>
             </div>
         </div>
-        
+
+        <!-- Certifications -->
         <div class="resume-card">
-            <h3><i class="fas fa-trophy"></i> Certifications</h3>
+            <h3><i class="fas fa-certificate"></i> Certifications</h3>
             <div class="resume-item">
-                <h4>Meta Frontend Developer Professional Certificate</h4>
-                <p>Completed advanced frontend development and React specialization.</p>
+                <h4>Infosys Springboard Certificates</h4>
+                <p>Completed courses in Python programming and related technologies on Infosys Springboard platform.</p>
             </div>
             <div class="resume-item">
                 <h4>Google UX Design Certificate</h4>
-                <p>Learned user-centered design process and prototyping tools.</p>
+                <p>Learned user-centered design process, wireframing, and prototyping tools.</p>
+            </div>
+            <div class="resume-item">
+                <h4>IBM Cognos Analytics Certificate</h4>
+                <p>Completed project-based certification in business intelligence and data analytics.</p>
             </div>
         </div>
+
+        <!-- 🏆 Achievements Section (NEW) -->
+        <div class="resume-card achievements-card">
+            <h3><i class="fas fa-trophy"></i> Achievements</h3>
+
+            <div class="resume-item achievement-item">
+                <div class="achievement-icon"><i class="fas fa-medal"></i></div>
+                <div class="achievement-body">
+                    <h4>Add Your Achievement Here <span>Year</span></h4>
+                    <p>Describe what you achieved, won, or were recognized for. (e.g., Hackathon winner, coding contest, etc.)</p>
+                </div>
+            </div>
+
+            <div class="resume-item achievement-item">
+                <div class="achievement-icon"><i class="fas fa-award"></i></div>
+                <div class="achievement-body">
+                    <h4>Add Your Achievement Here <span>Year</span></h4>
+                    <p>Describe the achievement. You can update this with your actual awards, recognitions or competition wins.</p>
+                </div>
+            </div>
+
+            <div class="resume-item achievement-item">
+                <div class="achievement-icon"><i class="fas fa-star"></i></div>
+                <div class="achievement-body">
+                    <h4>Add Your Achievement Here <span>Year</span></h4>
+                    <p>Another achievement goes here — academic rank, paper publication, event participation, etc.</p>
+                </div>
+            </div>
+
+            <p class="achievement-note"><i class="fas fa-info-circle"></i> Replace these placeholders with your actual achievements!</p>
+        </div>
+
     </div>
-    
+
     <div class="resume-download">
-        <button onclick="downloadResume()" class="btn-primary"><i class="fas fa-download"></i> Download Full Resume (PDF)</button>
+        <button onclick="downloadResume()" class="btn-primary"><i class="fas fa-download"></i> Download Resume</button>
     </div>
 </section>
 
 <footer>
-    <p>© 2025 Pavisha M | Software developer</p>
+    <p>© 2025 Pavisha M | Software Developer</p>
     <div class="footer-social">
-        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="https://github.com/PAVISHAM" target="_blank"><i class="fab fa-github"></i></a>
         <a href="#"><i class="fab fa-linkedin-in"></i></a>
         <a href="#"><i class="fab fa-twitter"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
