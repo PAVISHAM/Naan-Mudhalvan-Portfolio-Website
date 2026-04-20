@@ -1,0 +1,62 @@
+<!-- index.html - Home Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<nav>
+    <h2 class="logo">MyPortfolio <span>✦</span></h2>
+    <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">✦ WELCOME TO MY WORLD ✦</div>
+        <h1>Hello, I'm <span class="gradient-text">Pavisha M </span></h1>
+        <p>Frontend developer | Software developer | Problem Solver</p>
+        <div class="hero-buttons">
+            <button onclick="goToContact()" class="btn-primary">Hire Me <i class="fas fa-arrow-right"></i></button>
+            <button onclick="goToProjects()" class="btn-outline">View Work <i class="fas fa-code"></i></button>
+        </div>
+        <div class="hero-stats">
+            <div class="stat"><span class="stat-num">5+</span><span>Years Exp</span></div>
+            <div class="stat"><span class="stat-num">50+</span><span>Projects</span></div>
+            <div class="stat"><span class="stat-num">30+</span><span>Clients</span></div>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <div class="floating-card card-1"><i class="fab fa-react"></i> React</div>
+        <div class="floating-card card-2"><i class="fab fa-python"></i> Python</div>
+        <div class="floating-card card-3"><i class="fab fa-figma"></i> Figma</div>
+        <div class="profile-circle"></div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 Alex Morgan | Crafting digital experiences</p>
+    <div class="footer-social">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
