@@ -7,6 +7,277 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* ===== ACHIEVEMENTS SECTION ===== */
+        .achievements-section {
+            margin-top: 60px;
+            padding: 0 10px;
+        }
+
+        .achievements-section > h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--text, #fff);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .achievements-section > h3 i { color: #f6c90e; }
+
+        .achievements-subtitle {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 32px;
+        }
+
+        /* Grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 24px;
+        }
+
+        /* Card base */
+        .achievement-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            padding: 28px 24px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: -55px; right: -55px;
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(246,201,14,0.16), transparent 70%);
+            pointer-events: none;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(246,201,14,0.5);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.4);
+        }
+
+        /* ── IBM accent (blue) ── */
+        .achievement-card.ibm::before { background: radial-gradient(circle, rgba(0,130,255,0.2), transparent 70%); }
+        .achievement-card.ibm:hover   { border-color: rgba(0,130,255,0.5); }
+        .achievement-card.ibm .card-icon { background: linear-gradient(135deg,rgba(0,130,255,0.2),rgba(0,130,255,0.06)); border-color: rgba(0,130,255,0.35); color:#4da6ff; }
+        .achievement-card.ibm .card-year { color:#4da6ff; background:rgba(0,130,255,0.12); border-color:rgba(0,130,255,0.25); }
+        .achievement-card.ibm .btn-cert  { color:#4da6ff; background:rgba(0,130,255,0.1); border-color:rgba(0,130,255,0.35); }
+        .achievement-card.ibm .btn-cert:hover { background:rgba(0,130,255,0.22); color:#fff; box-shadow:0 4px 18px rgba(0,130,255,0.25); }
+
+        /* ── TATA accent (green) ── */
+        .achievement-card.tata::before { background: radial-gradient(circle, rgba(0,200,120,0.2), transparent 70%); }
+        .achievement-card.tata:hover   { border-color: rgba(0,200,120,0.5); }
+        .achievement-card.tata .card-icon { background: linear-gradient(135deg,rgba(0,200,120,0.2),rgba(0,200,120,0.06)); border-color: rgba(0,200,120,0.35); color:#00e896; }
+        .achievement-card.tata .card-year { color:#00e896; background:rgba(0,200,120,0.12); border-color:rgba(0,200,120,0.25); }
+        .achievement-card.tata .btn-cert  { color:#00e896; background:rgba(0,200,120,0.1); border-color:rgba(0,200,120,0.35); }
+        .achievement-card.tata .btn-cert:hover { background:rgba(0,200,120,0.22); color:#fff; box-shadow:0 4px 18px rgba(0,200,120,0.25); }
+
+        /* ── Infosys accent (purple) ── */
+        .achievement-card.infosys::before { background: radial-gradient(circle, rgba(180,0,230,0.2), transparent 70%); }
+        .achievement-card.infosys:hover   { border-color: rgba(200,80,255,0.5); }
+        .achievement-card.infosys .card-icon { background: linear-gradient(135deg,rgba(200,80,255,0.2),rgba(200,80,255,0.06)); border-color: rgba(200,80,255,0.35); color:#d070ff; }
+        .achievement-card.infosys .card-year { color:#d070ff; background:rgba(200,80,255,0.12); border-color:rgba(200,80,255,0.25); }
+        .achievement-card.infosys .btn-cert  { color:#d070ff; background:rgba(200,80,255,0.1); border-color:rgba(200,80,255,0.35); }
+        .achievement-card.infosys .btn-cert:hover { background:rgba(200,80,255,0.22); color:#fff; box-shadow:0 4px 18px rgba(200,80,255,0.25); }
+
+        /* Card header row */
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .card-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg,rgba(246,201,14,0.22),rgba(246,201,14,0.06));
+            border: 1px solid rgba(246,201,14,0.3);
+            color: #f6c90e;
+            flex-shrink: 0;
+        }
+
+        .card-year {
+            font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase;
+            color: #f6c90e;
+            background: rgba(246,201,14,0.12);
+            border: 1px solid rgba(246,201,14,0.25);
+            border-radius: 20px;
+            padding: 4px 12px;
+            white-space: nowrap;
+        }
+
+        .card-brand {
+            font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 1.2px; text-transform: uppercase;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1rem; font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+            line-height: 1.35;
+        }
+
+        .card-tags {
+            display: flex; flex-wrap: wrap; gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .card-tag {
+            font-size: 0.68rem; font-weight: 600;
+            padding: 3px 9px; border-radius: 20px;
+            background: rgba(255,255,255,0.07);
+            color: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card-desc {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.65;
+            margin-bottom: 22px;
+            flex: 1;
+        }
+
+        /* View Certificate button */
+        .btn-cert {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.4px;
+            color: #f6c90e;
+            background: rgba(246,201,14,0.1);
+            border: 1px solid rgba(246,201,14,0.35);
+            border-radius: 30px;
+            padding: 9px 18px;
+            cursor: pointer; text-decoration: none;
+            transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+            align-self: flex-start;
+        }
+        .btn-cert:hover { background:rgba(246,201,14,0.22); box-shadow:0 4px 18px rgba(246,201,14,0.2); color:#fff; }
+        .btn-cert i { font-size: 0.85rem; }
+
+        /* ===== MODAL ===== */
+        .cert-modal-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            align-items: center; justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .cert-modal-overlay.active { display: flex; animation: fadeIn 0.2s ease; }
+
+        @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
+        @keyframes slideUp { from{transform:translateY(30px);opacity:0} to{transform:translateY(0);opacity:1} }
+
+        .cert-modal {
+            background: #12122a;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 22px;
+            max-width: 880px; width: 100%;
+            max-height: 92vh;
+            display: flex; flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+        }
+
+        .cert-modal-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 18px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            gap: 12px;
+        }
+
+        .cert-modal-header-left { display:flex; align-items:center; gap:12px; }
+
+        .cert-modal-badge {
+            width:38px; height:38px; border-radius:10px;
+            display:flex; align-items:center; justify-content:center;
+            font-size:1.1rem; flex-shrink:0;
+        }
+
+        .cert-modal-title { font-size:0.97rem; font-weight:700; color:#fff; line-height:1.3; }
+        .cert-modal-org   { font-size:0.75rem; color:rgba(255,255,255,0.45); margin-top:2px; }
+
+        .cert-modal-close {
+            width:36px; height:36px; border-radius:50%;
+            border:1px solid rgba(255,255,255,0.15);
+            background:rgba(255,255,255,0.06);
+            color:rgba(255,255,255,0.6);
+            font-size:0.95rem; cursor:pointer;
+            display:flex; align-items:center; justify-content:center;
+            transition:background 0.2s, color 0.2s; flex-shrink:0;
+        }
+        .cert-modal-close:hover { background:rgba(255,80,80,0.2); color:#ff6b6b; border-color:rgba(255,80,80,0.3); }
+
+        .cert-modal-body {
+            flex:1; overflow-y:auto;
+            padding:24px;
+            display:flex; align-items:center; justify-content:center;
+            min-height:280px;
+            background:rgba(0,0,0,0.2);
+        }
+
+        .cert-modal-body img {
+            max-width:100%; max-height:62vh;
+            border-radius:10px;
+            box-shadow:0 10px 50px rgba(0,0,0,0.6);
+            object-fit:contain;
+        }
+
+        .cert-modal-body iframe {
+            width:100%; height:62vh;
+            border:none; border-radius:10px;
+        }
+
+        .cert-placeholder { text-align:center; color:rgba(255,255,255,0.35); padding:20px; }
+        .cert-placeholder i { font-size:3.5rem; margin-bottom:16px; display:block; opacity:0.5; }
+        .cert-placeholder p { font-size:0.88rem; line-height:1.7; }
+        .cert-placeholder code { background:rgba(255,255,255,0.08); padding:2px 7px; border-radius:5px; font-size:0.82rem; color:rgba(255,255,255,0.5); }
+
+        .cert-modal-footer {
+            padding:14px 24px;
+            border-top:1px solid rgba(255,255,255,0.08);
+            display:flex; justify-content:flex-end;
+            background:rgba(0,0,0,0.15);
+        }
+
+        .btn-download {
+            display:inline-flex; align-items:center; gap:8px;
+            padding:9px 22px; border-radius:30px;
+            font-size:0.82rem; font-weight:700;
+            background:linear-gradient(135deg,#f6c90e,#d4a800);
+            color:#111; text-decoration:none; border:none; cursor:pointer;
+            transition:opacity 0.2s, transform 0.2s;
+        }
+        .btn-download:hover { opacity:0.88; transform:scale(1.03); }
+
+        @media (max-width:640px) {
+            .achievements-grid { grid-template-columns:1fr; }
+            .cert-modal { border-radius:16px; }
+            .cert-modal-body img,
+            .cert-modal-body iframe { max-height:55vh; height:55vh; }
+        }
+    </style>
 </head>
 <body>
 
@@ -34,6 +305,7 @@
     <h1>My <span class="gradient-text">Skills</span></h1>
     <p class="section-subtitle">Technical skills, tools, and special abilities</p>
 
+    <!-- ===== SKILL BARS ===== -->
     <div class="skills-container">
 
         <div class="skill-category">
@@ -86,6 +358,7 @@
 
     </div>
 
+    <!-- ===== TOOLS ===== -->
     <div class="tools-section">
         <h3><i class="fas fa-tools"></i> Tools I Use</h3>
         <div class="tools-cloud">
@@ -99,6 +372,138 @@
             <span class="tool-tag"><i class="fab fa-jenkins"></i> Jenkins</span>
         </div>
     </div>
+
+    <!-- ================================================================
+         ACHIEVEMENTS & CERTIFICATES
+         ================================================================
+         STEPS TO ATTACH YOUR REAL CERTIFICATES
+         ────────────────────────────────────────
+         1. Create a folder called  certificates/  in the same directory
+            as this skills.html file.
+
+         2. Copy each certificate file into that folder and name them:
+              certificates/ibm-data-analytics.pdf       (or .jpg / .png)
+              certificates/tata-data-analytics.pdf
+              certificates/infosys-springboard.pdf
+
+         3. In each card's <a class="btn-cert"> tag below, update:
+              data-cert  → the path matching your file name above
+              data-type  → "pdf"  if it's a PDF
+                           "image" if it's a JPG or PNG
+
+         4. That's it! The View Certificate button will open it in a
+            full-screen popup. Visitors can also download it.
+         ================================================================ -->
+
+    <div class="achievements-section">
+        <h3><i class="fas fa-trophy"></i> Internship Achievements &amp; Certificates</h3>
+        <p class="achievements-subtitle">Click "View Certificate" on any card to open it in a full-screen preview.</p>
+
+        <div class="achievements-grid">
+
+            <!-- ─────────── IBM DATA ANALYTICS ─────────── -->
+            <div class="achievement-card ibm">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-chart-bar"></i></div>
+                    <span class="card-year">2024</span>
+                </div>
+                <div class="card-brand">🔵 IBM</div>
+                <div class="card-title">Data Analytics Professional Certificate</div>
+                <div class="card-tags">
+                    <span class="card-tag">Data Analytics</span>
+                    <span class="card-tag">Python</span>
+                    <span class="card-tag">SQL</span>
+                    <span class="card-tag">Data Visualization</span>
+                </div>
+                <div class="card-desc">
+                    Completed IBM's Data Analytics program covering data wrangling,
+                    statistical analysis, Python for data science, SQL querying, and
+                    building interactive dashboards using real-world datasets.
+                </div>
+                <!--
+                    ✏️ UPDATE data-cert with your actual filename.
+                    Example:  data-cert="certificates/ibm-data-analytics.pdf"
+                    If it is a JPG/PNG:  data-type="image"
+                -->
+                <a class="btn-cert"
+                   href="c:\Users\LENOVO\Pictures\IBM.jpeg"
+                   data-cert="certificates/ibm-data-analytics.pdf"
+                   data-type="png"
+                   data-title="IBM Data Analytics Professional Certificate"
+                   data-org="IBM">
+                    <i class="fas fa-certificate"></i> View Certificate
+                </a>
+            </div>
+
+            <!-- ─────────── TATA FORAGE DATA ANALYTICS ─────────── -->
+            <div class="achievement-card tata">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-briefcase"></i></div>
+                    <span class="card-year">2024</span>
+                </div>
+                <div class="card-brand">🟢 TATA &middot; Forage</div>
+                <div class="card-title">Data Visualisation: Empowering Business with Effective Insights</div>
+                <div class="card-tags">
+                    <span class="card-tag">Data Visualisation</span>
+                    <span class="card-tag">Business Insights</span>
+                    <span class="card-tag">Forage</span>
+                    <span class="card-tag">Storytelling</span>
+                </div>
+                <div class="card-desc">
+                    Virtual internship experience with Tata Consultancy Services via Forage,
+                    focusing on data visualisation techniques and communicating business
+                    insights to senior leadership through effective dashboards and storytelling.
+                </div>
+                <!--
+                    ✏️ UPDATE data-cert with your actual filename.
+                    Example:  data-cert="certificates/tata-data-analytics.pdf"
+                -->
+                <a class="btn-cert"
+                   href="c:\Users\LENOVO\Pictures\Screenshots\Screenshot 2026-02-09 203016.png"
+                   data-cert="certificates/tata-data-analytics.pdf"
+                   data-type="png"
+                   data-title="TATA Forage — Data Visualisation Certificate"
+                   data-org="TATA · Forage">
+                    <i class="fas fa-certificate"></i> View Certificate
+                </a>
+            </div>
+
+            <!-- ─────────── INFOSYS SPRINGBOARD ─────────── -->
+            <div class="achievement-card infosys">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <span class="card-year">2024</span>
+                </div>
+                <div class="card-brand">🟣 Infosys Springboard</div>
+                <div class="card-title">Infosys Springboard Internship Program</div>
+                <div class="card-tags">
+                    <span class="card-tag">Springboard</span>
+                    <span class="card-tag">Data Analytics</span>
+                    <span class="card-tag">Problem Solving</span>
+                    <span class="card-tag">Industry Skills</span>
+                </div>
+                <div class="card-desc">
+                    Completed the Infosys Springboard internship program, gaining hands-on
+                    exposure to industry tools, analytical thinking, and real-world
+                    problem-solving practices under the guidance of Infosys mentors.
+                </div>
+                <!--
+                    ✏️ UPDATE data-cert with your actual filename.
+                    Example:  data-cert="certificates/infosys-springboard.pdf"
+                -->
+                <a class="btn-cert"
+                   href="c:\Users\LENOVO\Pictures\Screenshots\Screenshot 2026-02-09 203116.png"
+                   data-cert="certificates/infosys-springboard.pdf"
+                   data-type="png"
+                   data-title="Infosys Springboard Internship Certificate"
+                   data-org="Infosys Springboard">
+                    <i class="fas fa-certificate"></i> View Certificate
+                </a>
+            </div>
+
+        </div><!-- end .achievements-grid -->
+    </div><!-- end .achievements-section -->
+
 </section>
 
 <footer>
@@ -111,6 +516,137 @@
     </div>
 </footer>
 
+<!-- ===== CERTIFICATE POPUP MODAL ===== -->
+<div class="cert-modal-overlay" id="certModal" role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
+    <div class="cert-modal">
+
+        <div class="cert-modal-header">
+            <div class="cert-modal-header-left">
+                <div class="cert-modal-badge"
+                     style="background:rgba(246,201,14,0.15);border:1px solid rgba(246,201,14,0.3);color:#f6c90e;">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div>
+                    <div class="cert-modal-title" id="certModalTitle">Certificate</div>
+                    <div class="cert-modal-org"   id="certModalOrg"></div>
+                </div>
+            </div>
+            <button class="cert-modal-close" id="certModalClose" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="cert-modal-body" id="certModalBody">
+            <!-- Injected by JS -->
+        </div>
+
+        <div class="cert-modal-footer">
+            <a class="btn-download" id="certDownloadBtn" href="" download>
+                <i class="fas fa-download"></i> Download Certificate
+            </a>
+        </div>
+
+    </div>
+</div>
+
 <script src="script.js"></script>
+
+<script>
+/* =====================================================
+   CERTIFICATE MODAL LOGIC
+   Works for both PDF files and image files (JPG / PNG)
+   ===================================================== */
+(function () {
+    var overlay     = document.getElementById('certModal');
+    var modalTitle  = document.getElementById('certModalTitle');
+    var modalOrg    = document.getElementById('certModalOrg');
+    var modalBody   = document.getElementById('certModalBody');
+    var closeBtn    = document.getElementById('certModalClose');
+    var downloadBtn = document.getElementById('certDownloadBtn');
+
+    /* Attach click handler to every "View Certificate" button */
+    document.querySelectorAll('.btn-cert').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            var certPath  = this.getAttribute('data-cert')  || '';
+            var certType  = this.getAttribute('data-type')  || 'pdf';
+            var certTitle = this.getAttribute('data-title') || 'Certificate';
+            var certOrg   = this.getAttribute('data-org')   || '';
+
+            /* Fill header */
+            modalTitle.textContent = certTitle;
+            modalOrg.textContent   = certOrg;
+
+            /* Set download link */
+            downloadBtn.href = certPath;
+
+            /* Clear previous content */
+            modalBody.innerHTML = '';
+
+            if (!certPath || certPath === '#') {
+                /* ── No file attached yet ── */
+                downloadBtn.style.display = 'none';
+                modalBody.innerHTML =
+                    '<div class="cert-placeholder">' +
+                    '<i class="fas fa-folder-open"></i>' +
+                    '<p>Certificate not attached yet.<br>' +
+                    'Place your file in the <code>certificates/</code> folder<br>' +
+                    'and update <code>data-cert</code> in the HTML.</p>' +
+                    '</div>';
+
+            } else if (certType === 'pdf') {
+                /* ── PDF viewer ── */
+                downloadBtn.style.display = 'inline-flex';
+                var iframe = document.createElement('iframe');
+                iframe.src   = certPath;
+                iframe.title = certTitle;
+                modalBody.appendChild(iframe);
+
+            } else {
+                /* ── Image viewer (JPG / PNG / WEBP) ── */
+                downloadBtn.style.display = 'inline-flex';
+                var img = document.createElement('img');
+                img.alt = certTitle;
+                img.onerror = function () {
+                    modalBody.innerHTML =
+                        '<div class="cert-placeholder">' +
+                        '<i class="fas fa-exclamation-circle"></i>' +
+                        '<p>Could not load the image.<br>' +
+                        'Check that <code>' + certPath + '</code> exists.</p>' +
+                        '</div>';
+                    downloadBtn.style.display = 'none';
+                };
+                img.src = certPath;   /* set src AFTER onerror */
+                modalBody.appendChild(img);
+            }
+
+            /* Show the modal */
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    /* ── Close on X button ── */
+    closeBtn.addEventListener('click', closeModal);
+
+    /* ── Close when clicking outside the modal box ── */
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeModal();
+    });
+
+    /* ── Close on Escape key ── */
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeModal();
+    });
+
+    function closeModal() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        modalBody.innerHTML = '';   /* free iframe / image memory */
+    }
+})();
+</script>
+
 </body>
 </html>
